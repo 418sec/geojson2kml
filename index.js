@@ -1,9 +1,9 @@
-var exec = require('child_process').exec,
+var exec = require('child_process').execFile,
     path = require('path')
 
 module.exports = function(inPath, outPath, done){
-  var ogrCommand = 'ogr2ogr -f KML '+outPath+ ' '+inPath
-  exec(ogrCommand, function(err, stdout, stderr){
+  var ogrCommand = ['-f' , 'KML', outPath, inPath]
+  exec('ogr2ogr', ogrCommand, function(err, stdout, stderr){
     done(err)
   })
 }
